@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0f8c4bf-6046-47a0-8b3f-f5ac5a1f32ba" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Book.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Queue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Record.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Record.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/mapper/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/mapper/BookMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/target/classes/mapper/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/mapper/BookMapper.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a0f8c4bf-6046-47a0-8b3f-f5ac5a1f32ba" name="默认更改列表" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,32 +28,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "项目",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "apifox_uploader.settings.ApifoxUploaderConfigurable",
-    "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
-    ]
-  }
-}]]></component>
   <component name="RunManager" selected="Spring Boot.DemoApplication">
     <configuration name="DemoApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
@@ -85,13 +47,13 @@
     </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="demo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wen.DemoApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.wen.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wen.DemoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,7 +65,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="应用程序级" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
