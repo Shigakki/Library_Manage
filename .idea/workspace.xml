@@ -8,10 +8,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/entity/BorrowQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/entity/BorrowQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/java/com/wen/entity/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/java/com/wen/entity/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Queue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Record.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/entity/Record.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/com/wen/mapper/BookMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/com/wen/mapper/BookMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/target/classes/mapper/BookMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/target/classes/mapper/BookMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +42,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -45,6 +53,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "项目",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "apifox_uploader.settings.ApifoxUploaderConfigurable",
     "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229",
     "vue.rearranger.settings.migration": "true"
   },
@@ -54,7 +66,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.DemoApplicationTests.contextLoads">
+  <component name="RunManager" selected="Spring Boot.DemoApplication">
     <configuration name="DemoApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
@@ -86,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DemoApplicationTests.contextLoads" />
         <item itemvalue="Spring Boot.DemoApplication" />
+        <item itemvalue="JUnit.DemoApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
   </component>
@@ -103,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687246841994</updated>
       <workItem from="1687246843522" duration="13539000" />
-      <workItem from="1687268665090" duration="660000" />
+      <workItem from="1687268665090" duration="1516000" />
     </task>
     <servers />
   </component>

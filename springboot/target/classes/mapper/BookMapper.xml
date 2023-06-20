@@ -24,4 +24,16 @@
     <insert id="pushQueueBack">
         insert into borrow_queue(user_id,book_id,queue_date) values(#{userId},#{bookId},#{date});
     </insert>
+
+    <insert id="addBorrowRecord">
+        insert into borrow_records(user_id,book_id,borrow_date) values(#{userId},#{bookId},#{date})
+    </insert>
+
+    <select id="getRecords" resultType="com.wen.entity.Record">
+        select*from(#{sql})
+    </select>
+
+    <update id="returnBook">
+        update borrow_records set return_date=#{return_date},rating=#{rating},comment=#{comment} where user_id=#{user_id} and book_id=#{book_id}
+    </update>
 </mapper>

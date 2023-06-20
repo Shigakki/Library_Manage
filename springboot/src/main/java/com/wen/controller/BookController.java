@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/book")
-@Api(value = "Book-Controller")
+@Api(value = "book-controller")
 public class BookController {
     @Autowired
     @Resource

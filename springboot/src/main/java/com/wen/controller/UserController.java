@@ -68,7 +68,7 @@ public class UserController {
         Page<User> userPage = userMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         return Result.success(userPage);
     }
-    
+
     //添加JWT
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
