@@ -1,0 +1,7 @@
+{
+  "timestamp": "2023-06-18T06:30:09.761+00:00",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "",
+  "path": "/user"
+}

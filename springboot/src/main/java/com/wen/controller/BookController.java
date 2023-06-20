@@ -56,7 +56,4 @@ public class BookController {
         Page<Book> BookPage = BookMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         return Result.success(BookPage);
     }
-
-
-
 }

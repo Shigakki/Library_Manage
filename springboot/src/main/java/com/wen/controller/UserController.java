@@ -68,17 +68,7 @@ public class UserController {
         Page<User> userPage = userMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         return Result.success(userPage);
     }
-    //    登录
-//    @PostMapping("/login")
-//    @ApiOperation(value = "用户登录")
-//    public Result<?> login(@RequestBody User user){//这只是传进来的user，并没有在数据库中进行查找
-//        User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, user.getUsername()).eq(User::getPassword, user.getPassword()));
-//        if (res==null){
-//            return Result.error("-1","用户名或密码错误");
-//        }
-//        return Result.success(res);
-//    }
-
+    
     //添加JWT
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
