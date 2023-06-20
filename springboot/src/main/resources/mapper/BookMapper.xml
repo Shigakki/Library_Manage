@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wen.mapper.BookMapper">
+
+    <select id="getBookAvailable" resultType="java.lang.Integer">
+        select available_copies from book where id=#{bookId}
+    </select>
+
+    <update id="updateBookAvailable">
+        update book set available_copies=available_copies+#{num} where id=#{bookId}
+    </update>
+
+    <update id="popQueueFront">
+        delete from borrow_queue where book_id=#{bookId} and queue_date in (
+                    SELECT a.* from (
+                        select min(queue_date) from borrow_queue where book_id=#{bookId})a
+        )
+    </update>
+
+    <update id="popQueueById">
+        delete from borrow_queue where book_id=#{bookId} and userId=#{userId}
+    </update>
+
+    <insert id="pushQueueBack">
+        insert into borrow_queue(user_id,book_id,queue_date) values(#{userId},#{bookId},#{date});
+    </insert>
+
+    <insert id="addBorrowRecord">
+        insert into borrow_records(user_id,book_id,borrow_date) values(#{userId},#{bookId},#{date})
+    </insert>
+
+    <select id="getRecords" resultType="com.wen.entity.Record">
+        select*from(#{sql})
+    </select>
+
+    <update id="returnBook">
+        update borrow_records set return_date=#{return_date},rating=#{rating},comment=#{comment} where user_id=#{user_id} and book_id=#{book_id}
+    </update>
+</mapper>

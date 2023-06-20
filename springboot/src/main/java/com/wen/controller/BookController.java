@@ -9,6 +9,7 @@ import com.wen.entity.Book;
 import com.wen.mapper.BookMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 @RequestMapping("/book")
 @Api(value = "Book-Controller")
 public class BookController {
+    @Autowired
     @Resource
     BookMapper BookMapper;
 
@@ -54,4 +56,7 @@ public class BookController {
         Page<Book> BookPage = BookMapper.selectPage(new Page<>(pageNum, pageSize), wrapper);
         return Result.success(BookPage);
     }
+
+
+
 }
