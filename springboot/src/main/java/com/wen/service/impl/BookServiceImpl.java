@@ -1,10 +1,13 @@
-package com.wen.service;
+package com.wen.service.impl;
 
 import com.wen.entity.BorrowQueue;
 import com.wen.entity.Record;
 import com.wen.mapper.BookMapper;
+import com.wen.service.BookService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -15,19 +18,23 @@ import java.util.List;
  * @Author: 陈航
  * @Date: 2023/6/21 10:35
  */
-public class BookServiceImpl {
+@Service
+@Slf4j
+public class BookServiceImpl implements BookService {
     @Autowired
     private BookMapper bookMapper;
 
     //查询某指定书本可借阅余量
+    @Override
     public Integer getBookAvailable(Integer bookId){
         return bookMapper.getBookAvailable(bookId);
     }
 
     //能否借书 这里规定没种书每个用户只能借一本，返回0表示不可借（已借未还，或是已经加入某书的等待队列）
+    @Override
     public boolean canBorrowBook(Integer userId,Integer bookId){
-        String sql="select * from borrow_records where user_id="+userId+" and book_id="+bookId+"and return_date=NULL";
-        List<Record> records=bookMapper.getRecords(sql);
+        String sql="select * from borrow_records where user_id= "+userId+" and book_id= "+bookId+" and return_date is null";
+        List<Record> records=bookMapper.getRecords(sql,10,0);
         if(records.size()>0){
             return false;
         }
@@ -39,6 +46,7 @@ public class BookServiceImpl {
     }
 
     //借书 返回-1表示不可以借，返回0表示直接借，返回其他数字表示加入某书的等待队列，返回其位置
+    @Override
     public Integer borrowBook(Integer userId,Integer bookId){
         if(canBorrowBook(userId,bookId)==false){
             return -1;
@@ -58,6 +66,7 @@ public class BookServiceImpl {
     }
 
     //还书
+    @Override
     public boolean returnBook(Integer userId,Integer bookId,Integer rating,String comment){
         Date return_date=new Date();
         bookMapper.returnBook(bookId,userId,return_date,rating,comment);
@@ -75,28 +84,31 @@ public class BookServiceImpl {
     }
 
     //取消预约(排队)
+    @Override
     public boolean cancelReserve(Integer bookId,Integer userId){
         return bookMapper.popQueueById(bookId,userId);
     }
 
     //查询借阅记录，可指定书，用户，也可什么都不指定
-    public List<Record> getRecords(Integer userId,Integer bookId){
+    @Override
+    public List<Record> getRecords(Integer userId,Integer bookId,Integer pageSize,Integer pageNum){
         String sql="select * from borrow_records where id is not NULL";
         if(userId!=null){
-            sql+="and user_id="+userId;
+            sql+=" and user_id= "+userId;
         }
         if(bookId!=null){
-            sql+="and book_id="+bookId;
+            sql+=" and book_id= "+bookId;
         }
-        sql+="group by book_id order by borrow_date";
-        List<Record>result=bookMapper.getRecords(sql);
+        sql+=" order by borrow_date ";
+        List<Record>result=bookMapper.getRecords(sql,pageSize,pageSize*(pageNum-1));
         return result;
     }
 
     //查询用户的排队信息
-    public List<BorrowQueue> getQueue(Integer userId,Integer bookId){
+    @Override
+    public List<BorrowQueue> getQueue(Integer userId,Integer bookId,Integer pageSize,Integer pageNum){
         if(bookId==null){
-            return bookMapper.getQueue(userId);
+            return bookMapper.getQueue(userId,pageSize,pageSize*(pageNum-1));
         }else{
             List<BorrowQueue> result=new LinkedList<>();
             result.add(bookMapper.getQueueSpecific(userId,bookId));
