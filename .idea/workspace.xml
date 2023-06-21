@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0f8c4bf-6046-47a0-8b3f-f5ac5a1f32ba" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/springboot/src/test/java/com/wen/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/test/java/com/wen/DemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/springboot/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
