@@ -18,9 +18,9 @@ class DemoApplicationTests {
     private BookMapper bookMapper;
     @Test
     void contextLoads() {
-        Date date = new Date();
-//        bookMapper.pushQueueBack(1,1,date);
-        List<BorrowQueue>result=bookMapper.getQueue(1);
+//        Date date = new Date();
+////        bookMapper.pushQueueBack(1,1,date);
+//        List<BorrowQueue>result=bookMapper.getQueue(1);
 
     }
 
