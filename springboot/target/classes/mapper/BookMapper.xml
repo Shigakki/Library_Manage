@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wen.mapper.BookMapper">
-
+    <resultMap id="BorrowQueueMap" type="com.wen.entity.BorrowQueue">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="user_id"></result>
+        <result column="book_id" property="book_id"></result>
+        <result column="queue_date" property="queue_date"></result>
+        <result column="queue_position" property="queue_position"></result>
+    </resultMap>
     <select id="getBookAvailable" resultType="java.lang.Integer">
         select available_copies from book where id=#{bookId}
     </select>
@@ -36,4 +42,8 @@
     <update id="returnBook">
         update borrow_records set return_date=#{return_date},rating=#{rating},comment=#{comment} where user_id=#{user_id} and book_id=#{book_id}
     </update>
+
+    <select id="getQueue" resultMap="BorrowQueueMap">
+        SELECT borrow_queue.id as id,ROW_NUMBER() OVER(ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue where user_id=#{userId};
+    </select>
 </mapper>

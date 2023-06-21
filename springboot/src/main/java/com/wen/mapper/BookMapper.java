@@ -26,6 +26,9 @@ public interface BookMapper extends BaseMapper<Book> {
     //移出某本书等待队列的队首
     public boolean popQueueFront(@Param("bookId")int bookId);
 
+    //得到某书队列中的队首元素
+    public BorrowQueue getQueueFront(@Param("bookId")int bookId);
+
     //根据用户id移出某本书等待队列
     public boolean popQueueById(@Param("bookId")int bookId,@Param("userId")int userId);
 
@@ -43,4 +46,9 @@ public interface BookMapper extends BaseMapper<Book> {
 
     //查询用户所在的排队队列
     public List<BorrowQueue> getQueue(@Param("userId")int userId);
+    //查询某个用户在某指定书本的排队信息
+    public BorrowQueue getQueueSpecific(@Param("userId")int userId,@Param("bookId")int bookId);
+    //得到某书排队队列长度
+    public int getQueueLength(@Param("bookId")int bookId);
 }
+
