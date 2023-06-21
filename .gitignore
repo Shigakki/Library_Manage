@@ -11,8 +11,8 @@
 *.sln.docstates
 
 #IDEA
-.idea
-target
+.idea/
+target/
 *.yaml
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
