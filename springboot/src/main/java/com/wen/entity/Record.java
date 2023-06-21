@@ -21,5 +21,6 @@ public class Record {
     private Date return_date;
 
     private String comment;
+    private Integer rating;
 
 }
