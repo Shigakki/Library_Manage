@@ -8,6 +8,15 @@
         <result column="queue_date" property="queue_date"></result>
         <result column="queue_position" property="queue_position"></result>
     </resultMap>
+    <resultMap id="BorrowRecordMap" type="com.wen.entity.Record">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="user_id"></result>
+        <result column="book_id" property="book_id"></result>
+        <result column="borrow_date" property="borrow_date"></result>
+        <result column="return_date" property="return_date"></result>
+        <result column="comment" property="comment"></result>
+        <result column="rating" property="rating"></result>
+    </resultMap>
     <select id="getBookAvailable" resultType="java.lang.Integer">
         select available_copies from book where id=#{bookId}
     </select>
@@ -19,12 +28,13 @@
     <update id="popQueueFront">
         delete from borrow_queue where book_id=#{bookId} and queue_date in (
                     SELECT a.* from (
-                        select min(queue_date) from borrow_queue where book_id=#{bookId})a
+                        select min(queue_date) from borrow_queue where book_id=#{bookId}
+                    )a
         )
     </update>
 
     <update id="popQueueById">
-        delete from borrow_queue where book_id=#{bookId} and userId=#{userId}
+        delete from borrow_queue where book_id=#{bookId} and user_id=#{userId}
     </update>
 
     <insert id="pushQueueBack">
@@ -35,19 +45,23 @@
         insert into borrow_records(user_id,book_id,borrow_date) values(#{userId},#{bookId},#{date})
     </insert>
 
-    <select id="getRecords" resultType="com.wen.entity.Record">
-        select*from(#{sql})
+    <select id="getRecords" resultMap="BorrowRecordMap">
+        select a.* from(${sql})a limit ${pageSize} offset ${offset}
     </select>
 
     <update id="returnBook">
-        update borrow_records set return_date=#{return_date},rating=#{rating},comment=#{comment} where user_id=#{user_id} and book_id=#{book_id}
+        update borrow_records set return_date=#{return_date},rating=#{rating},comment=#{comment} where user_id=#{userId} and book_id=#{bookId}
     </update>
 
     <select id="getQueue" resultMap="BorrowQueueMap">
-        SELECT borrow_queue.id as id,ROW_NUMBER() OVER(ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue where user_id=#{userId};
+        select * from(
+            SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue
+        )a where a.user_id=#{userId} limit ${pageSize} offset ${offset}
     </select>
     <select id="getQueueSpecific" resultMap="BorrowQueueMap">
-        SELECT borrow_queue.id as id,ROW_NUMBER() OVER(ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue where user_id=#{userId} and book_id=#{bookId};
+        select * from(
+            SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue
+        )a where a.user_id=#{userId} and a.book_id=#{bookId}
     </select>
 
     <select id="getQueueLength" resultType="java.lang.Integer">

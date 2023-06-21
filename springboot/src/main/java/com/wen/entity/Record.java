@@ -22,4 +22,5 @@ public class Record {
 
     private String comment;
     private Integer rating;
+
 }
