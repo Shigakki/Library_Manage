@@ -8,6 +8,8 @@
         <result column="queue_date" property="queue_date"></result>
         <result column="queue_position" property="queue_position"></result>
         <result column="title" property="title"></result>
+        <result column="username" property="user_name"></result>
+        <result column="phone" property="phone"></result>
     </resultMap>
     <resultMap id="BorrowRecordMap" type="com.wen.entity.Record">
         <id column="id" property="id"></id>
@@ -18,6 +20,8 @@
         <result column="comment" property="comment"></result>
         <result column="rating" property="rating"></result>
         <result column="title" property="title"></result>
+        <result column="username" property="user_name"></result>
+        <result column="phone" property="phone"></result>
     </resultMap>
     <select id="getBookAvailable" resultType="java.lang.Integer">
         select available_copies from book where id=#{bookId}
@@ -48,7 +52,7 @@
     </insert>
 
     <select id="getRecords" resultMap="BorrowRecordMap">
-        select a.*,book.title from(${sql})a,book where a.book_id=book.id limit ${pageSize} offset ${offset}
+        select a.*,book.title,user.username,user.phone from(${sql})a,book,user where a.book_id=book.id and user.id=a.user_id limit ${pageSize} offset ${offset}
     </select>
 
     <update id="returnBook">
@@ -56,10 +60,17 @@
     </update>
 
     <select id="getQueue" resultMap="BorrowQueueMap">
+        select a.*,book.title,user.username,user.phone from(
+            SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue
+        )a,book,user where book.id=a.book_id and user.id=a.user_id ${sql}
+    </select>
+
+    <select id="getQueue" resultMap="BorrowQueueMap">
         select a.*,book.title from(
             SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue
         )a,book where a.user_id=#{userId} and book.id=a.book_id limit ${pageSize} offset ${offset}
     </select>
+
     <select id="getQueueSpecific" resultMap="BorrowQueueMap">
         select a.*,book.title from(
             SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue

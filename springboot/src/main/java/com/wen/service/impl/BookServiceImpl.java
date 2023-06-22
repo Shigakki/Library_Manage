@@ -30,6 +30,23 @@ public class BookServiceImpl implements BookService {
         return bookMapper.getBookAvailable(bookId);
     }
 
+    //查询用户的排队信息
+    @Override
+    public List<BorrowQueue> getQueue(Integer userId,Integer bookId,Integer pageSize,Integer pageNum){
+        String sql="";
+        if(userId!=null){
+            sql+=" and a.user_id= "+userId;
+        }
+        if(bookId!=null){
+            sql+=" and a.book_id= "+bookId;
+        }
+        sql+=" limit "+pageSize;
+        int offset=(pageNum-1)*pageSize;
+        sql+=" offset "+offset;
+        return bookMapper.getQueue(sql);
+
+    }
+
     //能否借书 这里规定没种书每个用户只能借一本，返回0表示不可借（已借未还，或是已经加入某书的等待队列）
     @Override
     public boolean canBorrowBook(Integer userId,Integer bookId){
@@ -38,8 +55,8 @@ public class BookServiceImpl implements BookService {
         if(records.size()>0){
             return false;
         }
-        BorrowQueue bq=bookMapper.getQueueSpecific(userId,bookId);
-        if(bq!=null){
+        List<BorrowQueue> bq=getQueue(userId,bookId,10,0);
+        if(bq!=null&&bq.size()>0){
             return false;
         }
         return true;
@@ -60,8 +77,8 @@ public class BookServiceImpl implements BookService {
         }else{
             Date date=new Date();
             bookMapper.pushQueueBack(bookId,userId,date);
-            BorrowQueue bq=bookMapper.getQueueSpecific(userId,bookId);
-            return bq.getQueue_position();
+            List<BorrowQueue> bq=getQueue(userId,bookId,10,0);
+            return bq.get(0).getQueue_position();
         }
     }
 
@@ -104,15 +121,5 @@ public class BookServiceImpl implements BookService {
         return result;
     }
 
-    //查询用户的排队信息
-    @Override
-    public List<BorrowQueue> getQueue(Integer userId,Integer bookId,Integer pageSize,Integer pageNum){
-        if(bookId==null){
-            return bookMapper.getQueue(userId,pageSize,pageSize*(pageNum-1));
-        }else{
-            List<BorrowQueue> result=new LinkedList<>();
-            result.add(bookMapper.getQueueSpecific(userId,bookId));
-            return result;
-        }
-    }
+
 }

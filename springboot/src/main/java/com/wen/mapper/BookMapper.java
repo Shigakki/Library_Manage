@@ -45,9 +45,8 @@ public interface BookMapper extends BaseMapper<Book> {
     public boolean returnBook(@Param("bookId")Integer bookId,@Param("userId")Integer userId,@Param("return_date")Date return_date,@Param("rating")Integer rating,@Param("comment") String comment);
 
     //查询用户所在的排队队列
-    public List<BorrowQueue> getQueue(@Param("userId")Integer userId,@Param("pageSize")Integer pageSize,@Param("offset")Integer offset);
-    //查询某个用户在某指定书本的排队信息
-    public BorrowQueue getQueueSpecific(@Param("userId")Integer userId,@Param("bookId")Integer bookId);
+    public List<BorrowQueue> getQueue(@Param("sql")String sql);
+
     //得到某书排队队列长度
     public Integer getQueueLength(@Param("bookId")Integer bookId);
 }

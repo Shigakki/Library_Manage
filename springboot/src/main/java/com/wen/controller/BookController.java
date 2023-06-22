@@ -78,8 +78,8 @@ public class BookController {
 
     //查询特定用户的排队信息
     @GetMapping("/borrowQueue")
-    @ApiOperation(value = "查询用户的排队信息，其中必须指定userId,可指定bookId")
-    public Result<?> getQueue(@RequestParam("userId") Integer userId,@RequestParam(required = false,value="bookId") Integer bookId,@RequestParam(required = false,value="pageSize",defaultValue = "10") Integer pageSize,@RequestParam(required = false,value="pageNum",defaultValue = "1") Integer pageNum){
+    @ApiOperation(value = "查询用户的排队信息，其中可指定userId,bookId")
+    public Result<?> getQueue(@RequestParam(required = false,value="userId") Integer userId,@RequestParam(required = false,value="bookId") Integer bookId,@RequestParam(required = false,value="pageSize",defaultValue = "10") Integer pageSize,@RequestParam(required = false,value="pageNum",defaultValue = "1") Integer pageNum){
         List<BorrowQueue> data=bookService.getQueue(userId,bookId,pageSize,pageNum);
         return Result.success(data);
     }
