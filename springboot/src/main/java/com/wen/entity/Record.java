@@ -22,5 +22,6 @@ public class Record {
 
     private String comment;
     private Integer rating;
+    private String title;//书名
 
 }

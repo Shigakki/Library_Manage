@@ -82,7 +82,7 @@ public class UserController {
             return Result.error("-1","用户名或密码错误");
         }
         Map<String,String> info = new HashMap<>();
-        String token = JwtUtil.createJWT(UUID.randomUUID().toString(), user.getUsername(), null);
+        String token = JwtUtil.createJWT(UUID.randomUUID().toString(), user.getRole(), null);
         info.put("token",token);
         System.out.println(">>>>>>完成了登录，好耶！！");
         res.setToken(token);
