@@ -7,6 +7,7 @@
         <result column="book_id" property="book_id"></result>
         <result column="queue_date" property="queue_date"></result>
         <result column="queue_position" property="queue_position"></result>
+        <result column="title" property="title"></result>
     </resultMap>
     <resultMap id="BorrowRecordMap" type="com.wen.entity.Record">
         <id column="id" property="id"></id>
@@ -16,6 +17,7 @@
         <result column="return_date" property="return_date"></result>
         <result column="comment" property="comment"></result>
         <result column="rating" property="rating"></result>
+        <result column="title" property="title"></result>
     </resultMap>
     <select id="getBookAvailable" resultType="java.lang.Integer">
         select available_copies from book where id=#{bookId}
@@ -46,7 +48,7 @@
     </insert>
 
     <select id="getRecords" resultMap="BorrowRecordMap">
-        select a.* from(${sql})a limit ${pageSize} offset ${offset}
+        select a.*,book.title from(${sql})a,book where a.book_id=book.id limit ${pageSize} offset ${offset}
     </select>
 
     <update id="returnBook">
@@ -54,14 +56,14 @@
     </update>
 
     <select id="getQueue" resultMap="BorrowQueueMap">
-        select * from(
+        select a.*,book.title from(
             SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue
-        )a where a.user_id=#{userId} limit ${pageSize} offset ${offset}
+        )a,book where a.user_id=#{userId} and book.id=a.book_id limit ${pageSize} offset ${offset}
     </select>
     <select id="getQueueSpecific" resultMap="BorrowQueueMap">
-        select * from(
+        select a.*,book.title from(
             SELECT borrow_queue.id as id,ROW_NUMBER() OVER( partition by borrow_queue.book_id ORDER BY borrow_queue.queue_date) as queue_position, borrow_queue.user_id,borrow_queue.book_id,borrow_queue.queue_date as queue_date FROM borrow_queue
-        )a where a.user_id=#{userId} and a.book_id=#{bookId}
+        )a,book where a.user_id=#{userId} and a.book_id=#{bookId} and book.id=a.book_id
     </select>
 
     <select id="getQueueLength" resultType="java.lang.Integer">

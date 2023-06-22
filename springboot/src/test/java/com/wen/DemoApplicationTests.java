@@ -42,7 +42,7 @@ class DemoApplicationTests {
         System.out.println(result);
 
         //1号还书,此时7号应自动借到书
-        result=bookService.returnBook(1,1,123,"123");
+        result=bookService.returnBook(1,1,5,"123");
         System.out.println(result);
 
         List<Record>records=bookService.getRecords(null,1,10,1);
