@@ -21,6 +21,7 @@ public class BorrowQueue {
 
     private Integer queue_position;//在等待队列的位置
 
+    private String title;//书名
     public Integer getId() {
         return id;
     }

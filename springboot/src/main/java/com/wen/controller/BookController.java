@@ -71,7 +71,7 @@ public class BookController {
     //借阅信息查询
     @GetMapping("/borrowRecords")
     @ApiOperation(value = "查询借阅记录，可指定书，用户，也可什么都不指定")
-    public Result<?> getBorrowRecords(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId,@RequestParam("pageSize") Integer pageSize,@RequestParam("pageNum") Integer pageNum){
+    public Result<?> getBorrowRecords(@RequestParam("userId") Integer userId,@RequestParam(required = false,value="bookId" ) Integer bookId,@RequestParam(required = false,value="pageSize",defaultValue = "10") Integer pageSize,@RequestParam(required = false,value="pageNum",defaultValue = "1") Integer pageNum){
         List<Record> data=bookService.getRecords(userId,bookId,pageSize,pageNum);
         return Result.success(data);
     }
@@ -79,7 +79,7 @@ public class BookController {
     //查询特定用户的排队信息
     @GetMapping("/borrowQueue")
     @ApiOperation(value = "查询用户的排队信息，其中必须指定userId,可指定bookId")
-    public Result<?> getQueue(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId,@RequestParam("pageSize") Integer pageSize,@RequestParam("pageNum") Integer pageNum){
+    public Result<?> getQueue(@RequestParam("userId") Integer userId,@RequestParam(required = false,value="bookId") Integer bookId,@RequestParam(required = false,value="pageSize",defaultValue = "10") Integer pageSize,@RequestParam(required = false,value="pageNum",defaultValue = "1") Integer pageNum){
         List<BorrowQueue> data=bookService.getQueue(userId,bookId,pageSize,pageNum);
         return Result.success(data);
     }
