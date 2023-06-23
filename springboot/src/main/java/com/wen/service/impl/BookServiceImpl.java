@@ -55,7 +55,7 @@ public class BookServiceImpl implements BookService {
         if(records.size()>0){
             return false;
         }
-        List<BorrowQueue> bq=getQueue(userId,bookId,10,0);
+        List<BorrowQueue> bq=getQueue(userId,bookId,10,1);
         if(bq!=null&&bq.size()>0){
             return false;
         }
@@ -77,7 +77,7 @@ public class BookServiceImpl implements BookService {
         }else{
             Date date=new Date();
             bookMapper.pushQueueBack(bookId,userId,date);
-            List<BorrowQueue> bq=getQueue(userId,bookId,10,0);
+            List<BorrowQueue> bq=getQueue(userId,bookId,10,1);
             return bq.get(0).getQueue_position();
         }
     }
@@ -85,6 +85,7 @@ public class BookServiceImpl implements BookService {
     //还书
     @Override
     public boolean returnBook(Integer userId,Integer bookId,Integer rating,String comment){
+
         Date return_date=new Date();
         bookMapper.returnBook(bookId,userId,return_date,rating,comment);
         Integer length=bookMapper.getQueueLength(bookId);
