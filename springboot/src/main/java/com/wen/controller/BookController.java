@@ -89,7 +89,11 @@ public class BookController {
     @ApiOperation(value = "取消用户的预约信息，其中必须指定userId和bookId")
     public Result<?> cancelReserve(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId){
         boolean flag=bookService.cancelReserve(bookId,userId);
-        return Result.success(flag);
+        if(flag==false){
+            return Result.error("-1","当前用户没有预定该书本");
+        }else{
+            return Result.success("取消预约成功");
+        }
     }
 
     //借书
@@ -101,7 +105,13 @@ public class BookController {
             "比如返回1表示该用户在队首第一个位置")
     public Result<?> borrowBook(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId){
         Integer result=bookService.borrowBook(userId,bookId);
-        return Result.success(result);
+        if(result==-1){
+            return Result.error("-1","当前用户已借阅或已预定该书本，不可重复借阅");
+        }else if(result==0){
+            return Result.success("借书成功");
+        }else{
+            return Result.success("该书本已借完，自动为您预约，您在预约中排第"+result+"位");
+        }
     }
 
     //还书与评论打分
@@ -110,6 +120,10 @@ public class BookController {
             "如果没有，就让书的可借阅余量+1")
     public Result<?> returnBook(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId,@RequestParam("rating")Integer rating,@RequestParam("comment")String comment){
         boolean flag=bookService.returnBook(userId,bookId,rating,comment);
-        return Result.success(flag);
+        if(flag==true){
+            return Result.success("还书成功");
+        }else{
+            return Result.error("-1","还书失败，用户已还书或未借阅");
+        }
     }
 }

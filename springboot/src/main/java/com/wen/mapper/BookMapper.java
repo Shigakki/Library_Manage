@@ -49,5 +49,7 @@ public interface BookMapper extends BaseMapper<Book> {
 
     //得到某书排队队列长度
     public Integer getQueueLength(@Param("bookId")Integer bookId);
+
+
 }
 
