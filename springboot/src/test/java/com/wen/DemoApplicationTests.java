@@ -1,5 +1,6 @@
 package com.wen;
 
+import com.wen.entity.BorrowQueue;
 import com.wen.entity.Record;
 import com.wen.service.BookService;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class DemoApplicationTests {
     @Test
     void totalTest() {
 
-        //初始book1有5本可借
+        //初始book1有3本可借
         int avail=bookService.getBookAvailable(1);
         System.out.println(avail);
 
@@ -27,8 +28,8 @@ class DemoApplicationTests {
         borrow_result=bookService.borrowBook(1,1);
         System.out.println(borrow_result);
 
-        //2,3,4,5可借 6,7,8,9,10到队列中
-        for(int i=2;i<=10;i++){
+        //2,3可借 4,5,6到队列中
+        for(int i=2;i<=6;i++){
             borrow_result=bookService.borrowBook(i,1);
             System.out.println(borrow_result);
         }
@@ -38,10 +39,10 @@ class DemoApplicationTests {
         System.out.println(borrow_result);
 
         //6取消预约
-        boolean result=bookService.cancelReserve(1,6);
+        boolean result=bookService.cancelReserve(1,4);
         System.out.println(result);
 
-        //1号还书,此时7号应自动借到书
+        //1号还书,此时5号应自动借到书
         result=bookService.returnBook(1,1,5,"123");
         System.out.println(result);
 
@@ -50,6 +51,10 @@ class DemoApplicationTests {
             System.out.println(records.get(i));
         }
 
+        List<BorrowQueue>queues=bookService.getQueue(null,null,10,1);
+        for(int i=0;i<queues.size();i++){
+            System.out.println(queues.get(i));
+        }
     }
 
 

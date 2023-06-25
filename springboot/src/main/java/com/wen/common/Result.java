@@ -40,6 +40,12 @@ public class Result<T> {
         result.setMsg("成功");
         return result;
     }
+    public static Result success(String msg){
+        Result result = new Result<>();
+        result.setCode("0");
+        result.setMsg(msg);
+        return result;
+    }
     public static <T> Result<T> success(T data){
         Result<T> result = new Result<>(data);
         result.setCode("0");
