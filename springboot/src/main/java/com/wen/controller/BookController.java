@@ -90,7 +90,7 @@ public class BookController {
     public Result<?> cancelReserve(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId){
         boolean flag=bookService.cancelReserve(bookId,userId);
         if(flag==false){
-            return Result.error("-1","当前用户没有预定该书本");
+            return Result.error("6","当前用户没有预定该书本");
         }else{
             return Result.success("取消预约成功");
         }
@@ -106,7 +106,7 @@ public class BookController {
     public Result<?> borrowBook(@RequestParam("userId") Integer userId,@RequestParam("bookId") Integer bookId){
         Integer result=bookService.borrowBook(userId,bookId);
         if(result==-1){
-            return Result.error("-1","当前用户已借阅或已预定该书本，不可重复借阅");
+            return Result.error("7","当前用户已借阅或已预定该书本，不可重复借阅");
         }else if(result==0){
             return Result.success("借书成功");
         }else{
@@ -123,7 +123,7 @@ public class BookController {
         if(flag==true){
             return Result.success("还书成功");
         }else{
-            return Result.error("-1","还书失败，用户已还书或未借阅");
+            return Result.error("8","还书失败，用户已还书或未借阅");
         }
     }
 }

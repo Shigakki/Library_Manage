@@ -79,7 +79,7 @@ public class UserController {
         // 最好别有重名的用户
         User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, user.getUsername()).eq(User::getPassword, user.getPassword()));
         if (res==null){
-            return Result.error("-1","用户名或密码错误");
+            return Result.error("3","用户名或密码错误");
         }
         Map<String,String> info = new HashMap<>();
         String token = JwtUtil.createJWT(UUID.randomUUID().toString(), user.getRole(), null);
@@ -100,7 +100,7 @@ public class UserController {
     public Result<?> register(@RequestBody User user){
         User res = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,user.getUsername()));
         if (res!=null){
-            return Result.error("-1","用户名重复");
+            return Result.error("5","用户名重复");
         }
         if (user.getPassword()==null){
             user.setPassword("861200");
